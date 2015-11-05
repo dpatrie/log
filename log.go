@@ -5,24 +5,12 @@ import (
 	"os"
 )
 
-var logger *log.Logger
-
-func init() {
-	logger = log.New(os.Stderr, "", log.LstdFlags)
-}
-
-//SetLogger allow to customize the internal log.Logger being used if for instance
-//you'd want to redirect output elsewhere.
-func SetLogger(l *log.Logger) {
-	logger = l
-}
-
 type level bool
 
 func (l level) println(level string, v ...interface{}) {
 	if l {
 		newv := append([]interface{}{"[" + level + "]"}, v...)
-		logger.Println(newv...)
+		log.Println(newv...)
 	}
 }
 
